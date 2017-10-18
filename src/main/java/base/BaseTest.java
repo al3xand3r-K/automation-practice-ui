@@ -10,6 +10,7 @@ public class BaseTest extends ConciseAPI {
     public void setUp() {
         ChromeDriverManager.getInstance().setup();
         Configuration.browser = "chrome";
+        Configuration.chromeSwitches = "no-sandbox";
         Configuration.baseUrl = "http://automationpractice.com/index.php";
     }
 
