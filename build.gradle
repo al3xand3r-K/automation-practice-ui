@@ -25,6 +25,7 @@ configurations {
 dependencies {
     agent "org.aspectj:aspectjweaver:1.8.11"
     testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:1.5.4"
+    testCompile "com.github.javafaker:javafaker:0.15"
     compile group: 'org.testng', name: 'testng', version: '6.11'
     compile group: 'com.codeborne', name: 'selenide', version: '4.8'
     compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
