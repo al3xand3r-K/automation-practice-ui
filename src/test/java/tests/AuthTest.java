@@ -1,38 +1,38 @@
 package tests;
 
 import base.BaseTest;
-import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import domain.User;
-import io.github.bonigarcia.wdm.ChromeDriverManager;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.close;
 
 public class AuthTest extends BaseTest {
-
     private Faker f = new Faker();
-    private User registeredUser;
+    private User registeredUser = new User("qatest2278@gmail.com", "78qa22");
 
-    @Test(enabled = false)
+    @AfterMethod
+    public void cleanUp() {
+        close();
+    }
+
+    @Test(priority = 1)
     public void canSignUpAsValidUser() {
         User user = new User(f.name().firstName(), f.name().lastName(),
                 f.internet().emailAddress(), f.internet().password(),
-                f.address().streetAddress(), f.address().city(), f.address().state(), f.address().zipCode(),
-                f.phoneNumber().cellPhone());
+                f.address().streetAddress(), f.address().city(), f.address().state(), f.numerify("#####"),
+                f.numerify("#-###-###-###"));
 
         new LoginPage()
             .open()
             .signUpAs(user)
             .myWishlistsBtn.shouldBe(visible);
-
-        registeredUser = user;
     }
 
-    @Test
+    @Test(priority = 2)
     public void canSignInAsRegisteredUser() {
         new LoginPage()
             .open()
@@ -40,4 +40,20 @@ public class AuthTest extends BaseTest {
             .myWishlistsBtn.shouldBe(visible);
     }
 
+    @Test(priority = 3)
+    public void canSignInWithIncorrectCredentials() {
+        User user = new User("incorrect@email.com", "wrong pass");
+        new LoginPage()
+                .open()
+                .loginAs(user)
+                .errorMsg("Authentication failed.").shouldBe(visible);
+    }
+
+    @Test(priority = 4)
+    public void canResetPassword() {
+        new LoginPage()
+                .open()
+                .restorePassword(registeredUser.getEmail())
+                .successAlert.shouldBe(visible);
+    }
 }
