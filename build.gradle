@@ -1,4 +1,4 @@
-group 'com.greycat'
+group 'com.pot'
 version '1.0-SNAPSHOT'
 
 buildscript {
@@ -24,12 +24,12 @@ configurations {
 
 dependencies {
     agent "org.aspectj:aspectjweaver:1.8.11"
-    testCompile "ru.yandex.qatools.allure:allure-testng-adaptor:1.5.4"
-    testCompile "com.github.javafaker:javafaker:0.15"
-    compile group: 'org.testng', name: 'testng', version: '6.11'
-    compile group: 'com.codeborne', name: 'selenide', version: '4.8'
-    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.18'
-    compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '1.7.2'
+    compile "io.qameta.allure:allure-testng:2.6.0"
+    compile "com.github.javafaker:javafaker:0.15"
+    compile "org.testng:testng:6.11"
+    compile "com.codeborne:selenide:4.8"
+    compile "org.projectlombok:lombok:1.16.18"
+    compile "io.github.bonigarcia:webdrivermanager:1.7.2"
 }
 
 test.doFirst {
@@ -45,6 +45,5 @@ test {
 allure {
     version = '2.2.1'
     autoconfigure = true
-    aspectjweaver = true
     allureJavaVersion = '2.0-BETA22'
 }
