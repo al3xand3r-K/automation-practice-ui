@@ -12,5 +12,4 @@ public class PasswordRestorePage {
     }
 
     public SelenideElement successAlert = $x("//p[contains(@class, 'alert-success')]");
-
 }

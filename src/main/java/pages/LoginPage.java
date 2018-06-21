@@ -61,5 +61,4 @@ public class LoginPage extends BasePage {
                 .submit();
         return page(PasswordRestorePage.class);
     }
-
 }
