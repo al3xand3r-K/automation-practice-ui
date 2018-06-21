@@ -19,7 +19,7 @@ public class AuthTest extends BaseTest {
         close();
     }
 
-    @Test(priority = 1)
+    @Test
     public void canSignUpAsValidUser() {
         User user = new User(f.name().firstName(), f.name().lastName(),
                 f.internet().emailAddress(), f.internet().password(),
@@ -32,7 +32,7 @@ public class AuthTest extends BaseTest {
             .myWishlistsBtn.shouldBe(visible);
     }
 
-    @Test(priority = 2)
+    @Test
     public void canSignInAsRegisteredUser() {
         new LoginPage()
             .open()
@@ -40,7 +40,7 @@ public class AuthTest extends BaseTest {
             .myWishlistsBtn.shouldBe(visible);
     }
 
-    @Test(priority = 3)
+    @Test
     public void canSignInWithIncorrectCredentials() {
         User user = new User("incorrect@email.com", "wrong pass");
         new LoginPage()
@@ -49,7 +49,7 @@ public class AuthTest extends BaseTest {
                 .errorMsg("Authentication failed.").shouldBe(visible);
     }
 
-    @Test(priority = 4)
+    @Test
     public void canResetPassword() {
         new LoginPage()
                 .open()
