@@ -1,8 +1,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test" verbose="1" configfailurepolicy="continue">
-    <test name="Severity Test">
+<suite name="Test" verbose="1" configfailurepolicy="continue" parallel="tests" thread-count="6">
+    <test name="Auth Tests">
         <classes>
             <class name="tests.AuthTest"/>
+        </classes>
+    </test>
+    <test name="Cart Tests">
+        <classes>
             <class name="tests.CartTest"/>
         </classes>
     </test>
