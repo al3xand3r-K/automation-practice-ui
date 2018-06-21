@@ -15,33 +15,49 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public SelenideElement signInBtn = $("#SubmitLogin");
+    private SelenideElement emailFld_login = $("#email");
+    private SelenideElement passwordFld_login = $("#passwd");
+    private SelenideElement signInBtn_login = $("#SubmitLogin");
+    private SelenideElement forgotPasswordLnk = $x("//p[contains(@class, 'lost_password form-group')]/a");
+
+    private SelenideElement emailFld_signUp = $("#email_create");
+    private SelenideElement createAccBtn = $("#SubmitCreate");
+    private SelenideElement firstNameFld = $("#customer_firstname");
+    private SelenideElement lastNameFld = $("#customer_lastname");
+    private SelenideElement passwordFld_signUp = $("#passwd");
+    private SelenideElement address1Fld = $("#address1");
+    private SelenideElement cityFld = $("#city");
+    private SelenideElement stateFld = $("#id_state");
+    private SelenideElement zipFld = $("#postcode");
+    private SelenideElement mobilePhoneFld = $("#phone_mobile");
+    private SelenideElement registerBtn = $("#submitAccount");
+
 
     public MyAccountPage loginAs(User user) {
-        $("#email").setValue( user.getEmail() );
-        $("#passwd").setValue( user.getPassword() );
-        $("#SubmitLogin").click();
+        emailFld_login.setValue( user.getEmail() );
+        passwordFld_login.setValue( user.getPassword() );
+        signInBtn_login.click();
         return page(MyAccountPage.class);
     }
 
     public MyAccountPage signUpAs(User user) {
-        $("#email_create").setValue( user.getEmail() );
-        $("#SubmitCreate").click();
-        $("#customer_firstname").setValue( user.getFirstName() );
-        $("#customer_lastname").setValue(( user.getLastName()) );
-        $("#passwd").setValue( user.getPassword() );
-        $("#address1").setValue( user.getAddress() );
-        $("#city").setValue( user.getCity() );
-        $("#id_state").selectOption( user.getState() );
-        $("#postcode").setValue( user.getZip() );
-        $("#phone_mobile").setValue( user.getMobilePhone() );
-        $("#submitAccount").click();
+        emailFld_signUp.setValue( user.getEmail() );
+        createAccBtn.click();
+        firstNameFld.setValue( user.getFirstName() );
+        lastNameFld.setValue(( user.getLastName()) );
+        passwordFld_signUp.setValue( user.getPassword() );
+        address1Fld.setValue( user.getAddress() );
+        cityFld.setValue( user.getCity() );
+        stateFld.selectOption( user.getState() );
+        zipFld.setValue( user.getZip() );
+        mobilePhoneFld.setValue( user.getMobilePhone() );
+        registerBtn.click();
         return page(MyAccountPage.class);
     }
 
     public PasswordRestorePage restorePassword(String email) {
-        $x("//p[contains(@class, 'lost_password form-group')]/a").click();
-        $("#email").setValue( email )
+        forgotPasswordLnk.click();
+        emailFld_login.setValue( email )
                 .submit();
         return page(PasswordRestorePage.class);
     }
