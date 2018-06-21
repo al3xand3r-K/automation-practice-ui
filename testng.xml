@@ -3,6 +3,7 @@
     <test name="Severity Test">
         <classes>
             <class name="tests.AuthTest"/>
+            <class name="tests.CartTest"/>
         </classes>
     </test>
 </suite>

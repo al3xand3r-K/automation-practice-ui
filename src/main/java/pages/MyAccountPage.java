@@ -13,7 +13,7 @@ public class MyAccountPage extends BasePage {
     }
 
     public SelenideElement myWishlistsBtn = $x("//span[text()='My wishlists']");
-    public SelenideElement signOutBtn = $x("//a[@class='logout']/..");
+    private SelenideElement signOutBtn = $x("//a[@class='logout']/..");
 
     public SelenideElement errorMsg(String msg) {
         return $x("//ol/li[text()='" + msg + "']");
@@ -23,5 +23,4 @@ public class MyAccountPage extends BasePage {
         signOutBtn.click();
         return page(LoginPage.class);
     }
-
 }

@@ -1,6 +1,11 @@
 package base;
 
+import com.codeborne.selenide.SelenideElement;
+import org.openqa.selenium.interactions.Actions;
+
 import java.util.Random;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class ConciseAPI {
 
@@ -16,4 +21,10 @@ public class ConciseAPI {
         return "qatest2278+" + uid + "@gmail.com";
     }
 
+    public void hoverAndClick(SelenideElement elemToHover, SelenideElement elemToClick) {
+        Actions builder = new Actions(getWebDriver());
+        builder.moveToElement(elemToHover);
+        builder.build().perform();
+        elemToClick.click();
+    }
 }
