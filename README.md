@@ -5,12 +5,13 @@ Tests are run against [automationpractice.com](http://automationpractice.com) - 
 
 ## Stack
 
-- Gradle (wrapper v.4.8)
-- TestNG
-- Selenide
-- Lombok
+- [Gradle](https://github.com/gradle/gradle) (wrapper v.4.8)
+- [TestNG](https://github.com/cbeust/testng)
+- [Selenide](https://github.com/codeborne/selenide)
+- [Allure 2](https://github.com/allure-framework/allure2)
+- [Lombok](https://github.com/rzwitserloot/lombok)
 - [Webdriver-Manager](https://github.com/bonigarcia/webdrivermanager)
-- Allure 2
+- [Faker](https://github.com/DiUS/java-faker)
 
 ## Running Tests
 
