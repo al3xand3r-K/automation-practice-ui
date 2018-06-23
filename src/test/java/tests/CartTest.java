@@ -70,4 +70,15 @@ public class CartTest extends BaseTest {
                 .setQty("3")
                 .productQtyFld.first().shouldHave(value("3"));
     }
+
+    @Test
+    public void failingTest() {
+        new ProductDetailsPage()
+                .open("4")
+                .selectProductProps("2", "M", "Pink")
+                .addToCart()
+                .backToShopping()
+                .openCart()
+                .productQtyFld.first().shouldHave(value("3"));
+    }
 }
