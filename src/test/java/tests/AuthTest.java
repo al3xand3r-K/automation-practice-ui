@@ -4,6 +4,7 @@ import base.BaseTest;
 import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import domain.User;
+import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -28,6 +29,7 @@ public class AuthTest extends BaseTest {
     }
 
     @Test
+    @Description("Can sign up")
     public void canSignUpAsValidUser() {
         User user = new User(f.name().firstName(), f.name().lastName(),
                 f.internet().emailAddress(), f.internet().password(),
@@ -41,6 +43,7 @@ public class AuthTest extends BaseTest {
     }
 
     @Test
+    @Description("Can sign in as a registered user")
     public void canSignInAsRegisteredUser() {
         new LoginPage()
             .open()
@@ -49,7 +52,8 @@ public class AuthTest extends BaseTest {
     }
 
     @Test
-    public void canSignInWithIncorrectCredentials() {
+    @Description("Can't sign in using unincorrect credentials")
+    public void cantSignInWithIncorrectCredentials() {
         User user = new User("incorrect@email.com", "wrong pass");
         new LoginPage()
                 .open()
@@ -58,6 +62,7 @@ public class AuthTest extends BaseTest {
     }
 
     @Test
+    @Description("Can request a reset password link")
     public void canResetPassword() {
         new LoginPage()
                 .open()

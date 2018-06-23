@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -27,6 +28,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Description("As a guest customer, can add product from catalog to cart")
     public void guestUser__canAddProductToCart__fromCatalog() {
         new CatalogPage()
             .open()
@@ -37,6 +39,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Description("As a guest customer, can add product from PDP to cart")
     public void guestUser__canAddProductToCart__fromPDP() {
         CartPage p = new ProductDetailsPage()
             .open("4")
@@ -49,6 +52,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Description("As a guest customer, can remove product from cart at the cart page")
     public void guestUser__canRemoveProductFromCart() {
         new CatalogPage()
             .open()
@@ -60,6 +64,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Description("As a guest customer, can edit product qty on the cart page")
     public void guestUser__canEditProductQtyInCart() {
         new ProductDetailsPage()
                 .open("4")
@@ -72,6 +77,7 @@ public class CartTest extends BaseTest {
     }
 
     @Test
+    @Description("This test always fails")
     public void failingTest() {
         new ProductDetailsPage()
                 .open("4")
