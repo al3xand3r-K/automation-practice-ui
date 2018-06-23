@@ -3,6 +3,7 @@ package pages;
 import base.BasePage;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.Condition.visible;
 
 public class ProductDetailsPage extends BasePage {
+    @Step("Open Product Details Page")
     public ProductDetailsPage open(String id) {
         Selenide.open("?id_product=" + id + "&controller=product");
         return this;
@@ -23,6 +25,7 @@ public class ProductDetailsPage extends BasePage {
         return $x("//a[@name='" + color + "']");
     }
 
+    @Step("Select product props")
     public ProductDetailsPage selectProductProps(String qty, String size, String color) {
         qtyFld.setValue(qty);
         sizeDd.selectOption(size);
@@ -30,6 +33,7 @@ public class ProductDetailsPage extends BasePage {
         return page(this);
     }
 
+    @Step("Click 'Add to cart' btn")
     public ProductDetailsPage addToCart() {
         addToCartBtn.click();
         productAddedConfirmation.shouldBe(visible);
