@@ -1,11 +1,14 @@
 package tests;
 
 import base.BaseTest;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import domain.User;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.LoginPage;
+import utils.AllureSelenideListener;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.close;
@@ -13,6 +16,11 @@ import static com.codeborne.selenide.Selenide.close;
 public class AuthTest extends BaseTest {
     private Faker f = new Faker();
     private User registeredUser = new User("qatest2278@gmail.com", "78qa22");
+
+    @BeforeClass
+    public void addListener(){
+        SelenideLogger.addListener("allure", new AllureSelenideListener());
+    }
 
     @AfterMethod
     public void cleanUp() {

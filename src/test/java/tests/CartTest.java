@@ -1,11 +1,14 @@
 package tests;
 
 import base.BaseTest;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.CartPage;
 import pages.CatalogPage;
 import pages.ProductDetailsPage;
+import utils.AllureSelenideListener;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.value;
@@ -13,6 +16,10 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.close;
 
 public class CartTest extends BaseTest {
+    @BeforeClass
+    public void addListener(){
+        SelenideLogger.addListener("allure", new AllureSelenideListener());
+    }
 
     @AfterMethod
     public void cleanUp() {
