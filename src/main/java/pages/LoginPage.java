@@ -4,12 +4,14 @@ import com.codeborne.selenide.Selenide;
 import base.BasePage;
 import com.codeborne.selenide.SelenideElement;
 import domain.User;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
 
 public class LoginPage extends BasePage {
+    @Step("Open Login Page")
     public LoginPage open() {
         Selenide.open("?controller=authentication&back=my-account");
         return this;
@@ -32,7 +34,7 @@ public class LoginPage extends BasePage {
     private SelenideElement mobilePhoneFld = $("#phone_mobile");
     private SelenideElement registerBtn = $("#submitAccount");
 
-
+    @Step("Sign in")
     public MyAccountPage loginAs(User user) {
         emailFld_login.setValue( user.getEmail() );
         passwordFld_login.setValue( user.getPassword() );
@@ -40,6 +42,7 @@ public class LoginPage extends BasePage {
         return page(MyAccountPage.class);
     }
 
+    @Step("Sign up")
     public MyAccountPage signUpAs(User user) {
         emailFld_signUp.setValue( user.getEmail() );
         createAccBtn.click();
@@ -55,6 +58,7 @@ public class LoginPage extends BasePage {
         return page(MyAccountPage.class);
     }
 
+    @Step("Restore password")
     public PasswordRestorePage restorePassword(String email) {
         forgotPasswordLnk.click();
         emailFld_login.setValue( email )
